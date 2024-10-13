@@ -1,28 +1,35 @@
 <template>
   <login v-if="loginactive" @close="loginactive = false" />
-  <h1 class="text-center text-3xl font-bold my-4">Club List</h1>
-  <div class="flex justify-center">
-    <input
-      id="searchClub"
-      type="text"
-      placeholder="Search"
-      class="bg-gray-400 bg-opacity-50 text-black text-xl rounded-lg p-2 mb-4 md:w-full w-3/4"
-      v-model="searchRef"
-      @input="updateFilteredClubs()"
-    />
-    <label for="searchClub" class="sr-only"> Club List </label>
-  </div>
-  <div id="clublist" class="flex flex-col md:flex-row flex-wrap items-center">
+  <header class="text-center my-6">
+    <h1 class="text-4xl font-extrabold text-gray-800 mb-6">Club List</h1>
+    <div class="flex justify-center">
+      <input
+        id="searchClub"
+        type="search"
+        placeholder="Search for a club..."
+        class="py-2 px-4 rounded-lg shadow-lg bg-white bg-opacity-75 text-gray-700 text-xl mb-6 focus:outline-none focus:ring-2 focus:ring-primary w-full max-w-lg"
+        v-model="searchRef"
+        @input="updateFilteredClubs()"
+      />
+    </div>
+  </header>
+  <div
+    id="clublist"
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 p-4"
+  >
     <div
       v-for="club in filteredClubs"
       :key="club"
-      class="bg-gradient-to-br from-primary to-accent text-white text-lg font-semibold p-3 rounded-lg border-2 border-gray-700 mb-6 lg:w-1/4 md:w-1/2 w-3/4 text-center"
+      class="bg-white shadow-md hover:shadow-lg transition-shadow duration-300 rounded-lg border border-gray-200 p-6"
     >
-      <h2 class="text-black">
+      <h2 class="text-2xl font-bold text-primary mb-2">
         {{ club["Club Name"] }}
       </h2>
+      <p class="text-gray-600">
+        {{ club.Description || "No description available." }}
+      </p>
       <button
-        class="btn"
+        class="mt-4 bg-primary hover:bg-accent text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent transition duration-200"
         @click="
           loginactive = true;
           updateCurrentClub(club);
