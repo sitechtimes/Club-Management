@@ -26,7 +26,10 @@
         {{ club["Club Name"] }}
       </h2>
       <p class="text-gray-600">
-        {{ club.Description || "No description available." }}
+        President(s): {{ club["Club President(s)"] || "None" }}
+      </p>
+      <p class="text-gray-600">
+        Advisor(s): {{ club["Club Adviser"] || "None" }}
       </p>
       <button
         class="mt-4 bg-primary hover:bg-accent text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent transition duration-200"

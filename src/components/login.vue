@@ -2,26 +2,28 @@
   <div
     @click.self="$emit('close')"
     id="backgroundLogin"
-    class="fixed inset-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center"
+    class="fixed inset-0 w-full h-full bg-gray-900 bg-opacity-50 flex items-center justify-center"
   >
     <div
       id="loginPop"
-      class="flex flex-col items-center justify-center bg-gray-800 rounded-lg p-4 w-80 animate-grow"
+      class="bg-gray-800 rounded-lg p-4 w-96 animate-grow shadow-2xl"
     >
-      <label class="text-4xl text-white font-bold mb-4"
-        >Passkey{{ loginInfo.currentClub["Pass"] }}</label
-      >
-      <form
-        v-on:submit.prevent="login"
-        class="flex flex-row items-center w-full"
-      >
+      <h2 class="text-4xl text-white font-bold mb-6">
+        Passkey: {{ loginInfo.currentClub["Pass"] }}
+      </h2>
+      <form v-on:submit.prevent="login" class="flex flex-col w-full">
         <input
           id="passEnter"
           v-model="passkey"
           type="password"
-          class="bg-gray-400 bg-opacity-50 text-white text-xl rounded-lg p-2 mx-1 w-3/4 border-2 border-black"
+          class="bg-gray-400 bg-opacity-50 text-white text-xl rounded-lg p-2 w-full border-2 border-black mb-4"
         />
-        <button type="submit" class="btn">Login</button>
+        <button
+          type="submit"
+          class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
+        >
+          Login
+        </button>
       </form>
     </div>
   </div>
