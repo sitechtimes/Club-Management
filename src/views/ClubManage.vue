@@ -171,5 +171,5 @@ function addEvent() {
     console.error("Error adding data to Google Sheets:", error);
   }
 }
-onMounted(fetchSpreadsheetData);
+//onMounted(fetchSpreadsheetData);
 </script>
