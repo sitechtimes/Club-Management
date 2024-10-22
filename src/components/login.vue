@@ -1,6 +1,6 @@
 <template>
   <div
-    @click.self="$emit('close')"
+    @click.self="global.toggleLoginPage()"
     id="backgroundLogin"
     class="fixed inset-0 w-full h-full bg-gray-900 bg-opacity-50 flex items-center justify-center"
   >
@@ -33,18 +33,27 @@
 import { ref } from "vue";
 import { useLoginInfo } from "../stores/loginInfo";
 import { useRouter } from "vue-router";
+import { useGlobal } from "@/stores/global";
 
 const router = useRouter();
 const passkey = ref("");
 const loginInfo = useLoginInfo();
+const global = useGlobal();
 
 function login() {
   if (passkey.value === loginInfo.currentClub["Pass"]) {
     loginInfo.loggedIn = loginInfo.currentClub["Club Name"];
     passkey.value = "";
+    global.toggleLoginPage();
     router.push(`/${loginInfo.currentClub["Club Name"]}`);
   } else {
     alert("Incorrect Passkey");
   }
 }
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    global.toggleLoginPage();
+  }
+});
 </script>

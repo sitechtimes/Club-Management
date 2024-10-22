@@ -1,5 +1,5 @@
 <template>
-  <login v-if="loginactive" @close="loginactive = false" />
+  <login v-if="global.loginPage" />
   <header class="text-center my-6">
     <h1 class="text-4xl font-extrabold text-gray-800 mb-6">Club List</h1>
     <div class="flex justify-center">
@@ -34,7 +34,7 @@
       <button
         class="mt-4 bg-primary hover:bg-accent text-white font-semibold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent transition duration-200"
         @click="
-          loginactive = true;
+          global.loginPage = true;
           updateCurrentClub(club);
         "
       >
@@ -46,10 +46,12 @@
 
 <script setup>
 import clubs from "../assets/data.json";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import login from "../components/login.vue";
 import { useLoginInfo } from "../stores/loginInfo";
+import { useGlobal } from "@/stores/global";
 
+const global = useGlobal();
 const loginInfo = useLoginInfo();
 const searchRef = ref("");
 const filteredClubs = ref(clubs);
@@ -63,6 +65,4 @@ function updateFilteredClubs() {
     club["Club Name"].toLowerCase().includes(searchRef.value.toLowerCase())
   );
 }
-
-const loginactive = ref(false);
 </script>
