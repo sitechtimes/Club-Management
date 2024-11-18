@@ -26,7 +26,7 @@
         {{ club["Club Name"] }}
       </h2>
       <p class="text-gray-600">
-        President(s): {{ club["Club President(s)"] || "None" }}
+        President(s): {{ club["Club's President(s)"] || "None" }}
       </p>
       <p class="text-gray-600">
         Advisor(s): {{ club["Club Adviser"] || "None" }}
